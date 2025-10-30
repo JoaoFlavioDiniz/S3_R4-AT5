@@ -32,23 +32,19 @@ app.get("/livros", (req, res) => {
     }
 })
 
-//ate aqui esta funcionando
 //rota post
-
 
 app.post("/livros", (req, res) => {
 
     const filePath = path.join(__dirname, "livros.json");
 
     try {
-
         const { titulo, autor, ano, quantidade } = req.body;
         const anoLivro = parseFloat(ano);
         const quantidadeLivro = parseFloat(quantidade);
 
-
+        // inserir os dados no arquivos
         const novoLivro = {
-            // inserir os dados no arquivos
             titulo: titulo.trim(),
             autor: autor.trim(),
             ano: anoLivro,
@@ -67,7 +63,6 @@ app.post("/livros", (req, res) => {
         res.status(201).json({
             message: "Livro cadastrado com sucesso",
             livro: novoLivro
-
         });
 
     } catch (error) {
@@ -75,9 +70,7 @@ app.post("/livros", (req, res) => {
         res.status(500).json({ error: " Erro interno no servidor" });
     }
 
-
 });
-
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta 8081: http://localhost:${PORT}`);
